@@ -1,6 +1,7 @@
 # Hot Potato
 
-
+- Activate virtual env `python3 -m venv env && source env/bin/activate`
+- Install requirements `pip install -r requirements.txt`
 ---------------
 # token-mix
 
