@@ -78,7 +78,7 @@ To get started with Brownie:
 
 Any questions? Join our [Gitter](https://gitter.im/eth-brownie/community) channel to chat and share with others in the community.
 
-* More info on ERC 20 and ERC 721: https://medium.com/@brenn.a.hill/noobs-guide-to-understanding-erc-20-vs-erc-721-tokens-d7f5657a4ee7
+More info on [ERC 20 vs. ERC 721](https://medium.com/@brenn.a.hill/noobs-guide-to-understanding-erc-20-vs-erc-721-tokens-d7f5657a4ee7)
 
 ## License
 
