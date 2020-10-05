@@ -30,8 +30,8 @@ contract Potato {
     mapping(address => uint256) balances;
     mapping(address => mapping(address => uint256)) allowed;
 
-    event Transfer(address from, address to, uint256 value);
-    event Approval(address owner, address spender, uint256 value);
+    event Transfer(address from, address to, uint256 tokenId);
+    event Approval(address owner, address spender, uint256 tokenId);
 
     constructor(
         string memory _name,
@@ -55,7 +55,7 @@ contract Potato {
         @return Token balance
      */
     function balanceOf(address _owner) public view returns (uint256) {
-        return balances[_owner];
+        return balances[uint256 _balance];
     }
 
     /**
@@ -82,31 +82,31 @@ contract Potato {
              race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
              https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
         @param _spender The address which will spend the funds.
-        @param _value The amount of tokens to be spent.
+        @param _tokenId The id assigned to a token.
         @return Success boolean
      */
-    function approve(address _spender, uint256 _value) public returns (bool) {
-        allowed[msg.sender][_spender] = _value;
-        emit Approval(msg.sender, _spender, _value);
+    function approve(address _spender, uint256 _tokenId) public returns (bool) {
+        allowed[msg.sender][_spender] = _tokenId;
+        emit Approval(msg.sender, _spender, _tokenId);
         return true;
     }
 
     /** shared logic for transfer and transferFrom */
-    function _transfer(address _from, address _to, uint256 _value) internal {
-        require(balances[_from] >= _value, "Insufficient balance");
-        balances[_from] = balances[_from].sub(_value);
-        balances[_to] = balances[_to].add(_value);
-        emit Transfer(_from, _to, _value);
+    function _transfer(address _from, address _to, uint256 _tokenId) internal {
+        require(balances[_from] >= _tokenId, "Insufficient balance");
+        balances[_from] = balances[_from].sub(_tokenId);
+        balances[_to] = balances[_to].add(_tokenId);
+        emit Transfer(_from, _to, _tokenId);
     }
 
     /**
         @notice Transfer tokens to a specified address
         @param _to The address to transfer to
-        @param _value The amount to be transferred
+        @param _tokenId The id assigned to a token
         @return Success boolean
      */
-    function transfer(address _to, uint256 _value) public returns (bool) {
-        _transfer(msg.sender, _to, _value);
+    function transfer(address _to, uint256 _tokenId) public returns (bool) {
+        _transfer(msg.sender, _to, _tokenId);
         return true;
     }
 
@@ -114,20 +114,20 @@ contract Potato {
         @notice Transfer tokens from one address to another
         @param _from The address which you want to send tokens from
         @param _to The address which you want to transfer to
-        @param _value The amount of tokens to be transferred
+        @param _tokenId The id assigned to a token
         @return Success boolean
      */
     function transferFrom(
         address _from,
         address _to,
-        uint256 _value
+        uint256 _tokenId
     )
         public
         returns (bool)
     {
-        require(allowed[_from][msg.sender] >= _value, "Insufficient allowance");
-        allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
-        _transfer(_from, _to, _value);
+        require(allowed[_from][msg.sender] >= _tokenId, "Insufficient allowance");
+        allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_tokenId);
+        _transfer(_from, _to, _tokenId);
         return true;
     }
 }
