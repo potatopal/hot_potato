@@ -1,0 +1,35 @@
+{
+  "contracts": {
+    "Address": "3b4158955f564edb18bd7a8ffdb49859c904f0b7",
+    "ERC721": "4d6bfee82ec375b36db2ce137f35e066eda16a36",
+    "EnumerableMap": "3b4158955f564edb18bd7a8ffdb49859c904f0b7",
+    "EnumerableSet": "3b4158955f564edb18bd7a8ffdb49859c904f0b7",
+    "Potato": "0f7f9dad1e97b9faff4130feb9e47da868f6fdfd",
+    "SafeMath": "3b4158955f564edb18bd7a8ffdb49859c904f0b7",
+    "Strings": "3b4158955f564edb18bd7a8ffdb49859c904f0b7"
+  },
+  "tests": {
+    "tests/test_approve.py": {
+      "coverage": false,
+      "isolated": [],
+      "results": "EEEEEEEEEEEE",
+      "sha1": "7b0cf579e5264e912c97a94d7b3690fbd2c000aa",
+      "txhash": []
+    },
+    "tests/test_transfer.py": {
+      "coverage": false,
+      "isolated": [],
+      "results": "EEEEEEEEE",
+      "sha1": "1191412ae2dd7707d816c33e868b1e1205c9cf3c",
+      "txhash": []
+    },
+    "tests/test_transferFrom.py": {
+      "coverage": false,
+      "isolated": [],
+      "results": "EEEEEEEEEEEEEEEEE",
+      "sha1": "54c753f5f0523dffc8d949ef2a4a74189c7d0502",
+      "txhash": []
+    }
+  },
+  "tx": {}
+}
