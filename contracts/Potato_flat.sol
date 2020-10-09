@@ -1769,15 +1769,15 @@ library SafeMath {
 
 // File: browser/Potato.sol
 
-contract Potato is ERC721, Ownable, ERC721Burnable {
-    constructor() ERC721("Potato", "HOT") public {}
+// contract Potato is ERC721, Ownable, ERC721Burnable {
+//     constructor() ERC721("Potato", "HOT") public {}
 
-    function mint(address to, uint256 tokenId) public onlyOwner {
-        _mint(to, tokenId);
-    }
+//     function mint(address to, uint256 tokenId) public onlyOwner {
+//         _mint(to, tokenId);
+//     }
 
-    function _mint(address to) public onlyOwner{
-        mint(to, totalSupply().add(1));
-    }
+//     function _mint(address to) public onlyOwner{
+//         mint(to, totalSupply().add(1));
+//     }
 
-}
+// }
