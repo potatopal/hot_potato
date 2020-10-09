@@ -3,7 +3,7 @@
 
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+pragma solidity ^0.7.0;
 
 /*
  * @dev Provides information about the current execution context, including the
@@ -28,9 +28,9 @@ abstract contract Context {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/access/Ownable.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+
+
 
 /**
  * @dev Contract module which provides a basic access control mechanism, where
@@ -44,7 +44,7 @@ pragma solidity ^0.6.0;
  * `onlyOwner`, which can be applied to your functions to restrict their use to
  * the owner.
  */
-contract Ownable is Context {
+abstract contract Ownable is Context {
     address private _owner;
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
@@ -99,9 +99,9 @@ contract Ownable is Context {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/introspection/IERC165.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+
+
 
 /**
  * @dev Interface of the ERC165 standard, as defined in the
@@ -127,9 +127,9 @@ interface IERC165 {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/introspection/ERC165.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+
+
 
 
 /**
@@ -138,7 +138,7 @@ pragma solidity ^0.6.0;
  * Contracts may inherit from this and call {_registerInterface} to declare
  * their support of an interface.
  */
-contract ERC165 is IERC165 {
+abstract contract ERC165 is IERC165 {
     /*
      * bytes4(keccak256('supportsInterface(bytes4)')) == 0x01ffc9a7
      */
@@ -183,9 +183,7 @@ contract ERC165 is IERC165 {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.2;
 
 
 /**
@@ -315,9 +313,9 @@ interface IERC721 is IERC165 {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/token/ERC721/IERC721Receiver.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+
+
 
 /**
  * @title ERC721 token receiver interface
@@ -339,9 +337,9 @@ interface IERC721Receiver {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/token/ERC721/IERC721Enumerable.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.2;
+
+
 
 
 /**
@@ -370,9 +368,9 @@ interface IERC721Enumerable is IERC721 {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/token/ERC721/IERC721Metadata.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.2;
+
+
 
 
 /**
@@ -400,9 +398,9 @@ interface IERC721Metadata is IERC721 {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+
+
 
 /**
  * @title ERC721 Non-Fungible Token Standard basic implementation
@@ -864,9 +862,9 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable 
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/token/ERC721/ERC721Burnable.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+
+
 
 
 
@@ -891,9 +889,9 @@ abstract contract ERC721Burnable is Context, ERC721 {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/utils/Strings.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+
+
 
 /**
  * @dev String operations.
@@ -928,9 +926,9 @@ library Strings {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/utils/EnumerableMap.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+
+
 
 /**
  * @dev Library for managing an enumerable variant of Solidity's
@@ -1168,9 +1166,9 @@ library EnumerableMap {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/utils/EnumerableSet.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+
+
 
 /**
  * @dev Library for managing
@@ -1414,9 +1412,9 @@ library EnumerableSet {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/utils/Address.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.2;
+
+
 
 /**
  * @dev Collection of functions related to the address type
@@ -1606,9 +1604,9 @@ library Address {
 
 // File: github/OpenZeppelin/openzeppelin-contracts/contracts/math/SafeMath.sol
 
-// SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.0;
+
+
 
 /**
  * @dev Wrappers over Solidity's arithmetic operations with added overflow
@@ -1771,21 +1769,15 @@ library SafeMath {
 
 // File: browser/Potato.sol
 
-// SPDX-License-Identifier: MIT
-// pragma solidity ^0.6.0;
+contract Potato is ERC721, Ownable, ERC721Burnable {
+    constructor() ERC721("Potato", "HOT") public {}
 
+    function mint(address to, uint256 tokenId) public onlyOwner {
+        _mint(to, tokenId);
+    }
 
+    function _mint(address to) public onlyOwner{
+        mint(to, totalSupply().add(1));
+    }
 
-
-// contract Potato is ERC721, Ownable, ERC721Burnable {
-//     constructor() ERC721("Potato", "HOT") public {}
-
-//     function mint(address to, uint256 tokenId) public onlyOwner {
-//         _mint(to, tokenId);
-//     }
-
-//     function _mint(address to) public onlyOwner{
-//         mint(to, totalSupply().add(1));
-//     }
-
-// }
+}
