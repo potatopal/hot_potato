@@ -1766,44 +1766,65 @@ library SafeMath {
 
 
 
+// contract PotatoBurn is ERC721Burnable {
+//     function _burn(uint256 tokenId) public {
+//         burn(tokenId);
+//     }
+// }
+
 
 // File: browser/Potato.sol
 
-contract PotatoFactory is ERC721, Ownable, ERC721Burnable {
+contract PotatoFactory is  ERC721, Ownable, ERC721Burnable {
     //an array to track all the colors
-    struct Potato {
-        string name;
-        // uint dna;
-    }
-    Potato[] public potatoes;
+    string[] public potatoes;
 
     //a hash to check if the potato exists (so that all potatoes are unique)
     mapping(string => bool) _potatoExists; 
     constructor() ERC721("Potato", "HOT") public {
-    }
+    } 
 
     // a function to create new tokens(potato)
-    function mint(string memory _name) public onlyOwner {
+    function mint(string memory _potato) public onlyOwner {
+        // first check if the color exists or not
+        require(!_potatoExists[_potato]);
+
         //potato - add it
-        potatoes.push(Potato(_name));
+        potatoes.push(_potato);
         uint _id = potatoes.length;
         //call the mint function
         _mint(msg.sender, _id);
         //track the potato
-        _potatoExists[_name] = true; 
+        _potatoExists[_potato] = true; 
     }
 
-    
-
-    // function mint(address to, uint256 tokenId) public onlyOwner {
-    //     //potato - add it
-    //     //call the mint function
-    //     //track the potato
-    //     _mint(to, tokenId);
+    // burn a given potato 
+    // function _burn(uint256 tokenId) public {
+    //     burn(tokenId);
     // }
-
-    // function _mint(address to) public onlyOwner{
-    //     mint(to, totalSupply().add(1));
-    // }
-
 }
+
+
+
+
+
+
+
+
+
+
+//     // function mint(address to, uint256 tokenId) public onlyOwner {
+//     //     //potato - add it
+//     //     //call the mint function
+//     //     //track the potato
+//     //     _mint(to, tokenId);
+//     // }
+
+//     // function _mint(address to) public onlyOwner{
+//     //     mint(to, totalSupply().add(1));
+//     // }
+
+// }
+
+
+  
