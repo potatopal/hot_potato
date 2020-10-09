@@ -5,4 +5,7 @@ Its main tenets are:
 2.  You do not want the potato.
 3.  If you have the potato, you are now Couch Potato.  
 4.  To escape CouchLock, you should probably give someone else the potato.
-5.  After 24 hours, the potato has rotted and you are now free to make more food is potato.
+5.  After 24 hours, the potato has rotted and you are now free to make more food is potato. {this is under construction}
+
+# Characteristics of Potatoes
+1. All minted potatoes are unique (have a unique identifier)

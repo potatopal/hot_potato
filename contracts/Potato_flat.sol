@@ -1765,14 +1765,6 @@ library SafeMath {
 }
 
 
-
-// contract PotatoBurn is ERC721Burnable {
-//     function _burn(uint256 tokenId) public {
-//         burn(tokenId);
-//     }
-// }
-
-
 // File: browser/Potato.sol
 
 contract PotatoFactory is  ERC721, Ownable, ERC721Burnable {
@@ -1800,6 +1792,7 @@ contract PotatoFactory is  ERC721, Ownable, ERC721Burnable {
 
     // burn a given potato 
     // function _burn(uint256 tokenId) public {
+          //require potato timer to be > 24 hr
     //     burn(tokenId);
     // }
 }
