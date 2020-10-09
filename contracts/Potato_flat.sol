@@ -3,7 +3,7 @@
 
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.6.2;
 
 /*
  * @dev Provides information about the current execution context, including the
@@ -1769,15 +1769,41 @@ library SafeMath {
 
 // File: browser/Potato.sol
 
-// contract Potato is ERC721, Ownable, ERC721Burnable {
-//     constructor() ERC721("Potato", "HOT") public {}
+contract PotatoFactory is ERC721, Ownable, ERC721Burnable {
+    //an array to track all the colors
+    struct Potato {
+        string name;
+        // uint dna;
+    }
+    Potato[] public potatoes;
 
-//     function mint(address to, uint256 tokenId) public onlyOwner {
-//         _mint(to, tokenId);
-//     }
+    //a hash to check if the potato exists (so that all potatoes are unique)
+    mapping(string => bool) _potatoExists; 
+    constructor() ERC721("Potato", "HOT") public {
+    }
 
-//     function _mint(address to) public onlyOwner{
-//         mint(to, totalSupply().add(1));
-//     }
+    // a function to create new tokens(potato)
+    function mint(string memory _name) public onlyOwner {
+        //potato - add it
+        potatoes.push(Potato(_name));
+        uint _id = potatoes.length;
+        //call the mint function
+        _mint(msg.sender, _id);
+        //track the potato
+        _potatoExists[_name] = true; 
+    }
 
-// }
+    
+
+    // function mint(address to, uint256 tokenId) public onlyOwner {
+    //     //potato - add it
+    //     //call the mint function
+    //     //track the potato
+    //     _mint(to, tokenId);
+    // }
+
+    // function _mint(address to) public onlyOwner{
+    //     mint(to, totalSupply().add(1));
+    // }
+
+}
