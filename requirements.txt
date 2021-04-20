@@ -42,7 +42,7 @@ py==1.10.0
 py-solc-ast==1.2.5
 py-solc-x==1.0.0
 pycryptodome==3.9.8
-Pygments==2.6.1
+Pygments==2.7.4
 pygments-lexer-solidity==0.5.1
 PyJWT==1.7.1
 pyparsing==2.4.7
